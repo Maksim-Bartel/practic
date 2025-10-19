@@ -12,8 +12,8 @@ def check_password(password):
         errors.append("В пароле отсутствуют строчные буквы")
     if not any(symbol.isdigit() for symbol in password):
         errors.append("В пароле отсутствуют цифры")
-    special_chars = set('*-#')
-    if not any(symbol in special_chars for symbol in password):
+    chars = set('*-#')
+    if not any(symbol in chars for symbol in password):
         errors.append("В пароле отсутствуют специальные символы")
     allowed = string.ascii_uppercase + string.ascii_lowercase + string.digits + '*-#'
     if not all(symbol in allowed for symbol in password):
@@ -25,3 +25,4 @@ def check_password(password):
             print(error)
 
 check_password(password)
+
