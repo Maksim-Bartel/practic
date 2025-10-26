@@ -4,7 +4,7 @@ import re
 def IsValidNumber(cardNumber):
     return cardNumber.isdigit() and len(cardNumber) in [13, 15, 16]
 
-# я эту функцию (getCheckSum) почти полностью поменял
+
 def getCheckSum(cardNumber):
     checkSum = 0
     for i, char in enumerate(reversed(cardNumber)):
@@ -39,4 +39,5 @@ if IsValidNumber(cardNumber):
         print(getCardType(cardNumber))
 
 else:
+
     print("Wrong Input. Try again...")
