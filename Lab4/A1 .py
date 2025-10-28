@@ -1,11 +1,11 @@
 import random
 import time
 
-N = int(input('Введите количество примеров:'))
+L = int(input('Введите количество примеров:'))
 total_time = []
 counter_answer = 0
-for i in range(N):
-    print (f'Вопрос {i+1}/{N}')
+for i in range(L):
+    print (f'Вопрос {i+1}/{L}')
     a = random.randint(2, 9)
     b = random.randint(2, 9)
     start_time = time.time()
@@ -27,6 +27,7 @@ print("="*50)
 print('СТАТИСТИКА')
 print('='*50)
 print('Общее время:', sum(total_time))
-print('Среднее время на вопрос:', sum(total_time) / N)
-print(f'Правильных ответов: {counter_answer}/{N}')
-print(f'Процент правильных ответов: {(counter_answer/N)*100}%')
+print('Среднее время на вопрос:', sum(total_time) / L)
+print(f'Правильных ответов: {counter_answer}/{L}')
+
+print(f'Процент правильных ответов: {(counter_answer/L)*100}%')
