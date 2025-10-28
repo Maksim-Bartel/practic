@@ -21,8 +21,9 @@ def check_password(password):
     if not errors:
         print("Надежный пароль")
     else:
-        for error in errors:
-            print(error)
+        for i in errors:
+            print(i)
 
 check_password(password)
+
 
