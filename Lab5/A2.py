@@ -3,7 +3,6 @@ import re
 texts = input()
 text= re.split(r'(?<=[.?!]) ',texts)
 clean=[]
-res = ""
 for pos in text:
     sen=pos.split()
 
@@ -19,3 +18,4 @@ print("\nПредложения:")
 for pos in clean:
     print(pos)
 print(f"\nПредложений в тексте: {len(clean)}")
+
