@@ -1,13 +1,20 @@
-
 import re
 
 texts = input()
 text= re.split(r'(?<=[.?!]) ',texts)
 clean=[]
+res = ""
 for pos in text:
-    sen=" ".join(pos.split())
-    if sen:
-        clean.append(sen)
+    sen=pos.split()
+
+    res = ""
+
+    for i in range(len(sen)):
+        if i>0:
+         res+=" "
+        res+=sen[i]
+    if res:
+        clean.append(res)
 print("\nПредложения:")
 for pos in clean:
     print(pos)
