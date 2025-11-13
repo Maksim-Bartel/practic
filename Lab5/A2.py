@@ -1,21 +1,14 @@
 import re
 
-texts = input()
-text= re.split(r'(?<=[.?!]) ',texts)
-clean=[]
-for pos in text:
-    sen=pos.split()
+text = 'He jests at scars. That never felt a wound!   Hello, friend!   Are you OK?'
+sen = re.split(r'(?<=[.?!]) +', text)
 
-    res = ""
+def print_sen(items):
+    for item in items:
+        print(item)
+        
 
-    for i in range(len(sen)):
-        if i>0:
-         res+=" "
-        res+=sen[i]
-    if res:
-        clean.append(res)
-print("\nПредложения:")
-for pos in clean:
-    print(pos)
-print(f"\nПредложений в тексте: {len(clean)}")
+print_sen(sen)
+print(f'Предложений в тексте: {len(sen)}')
+
 
