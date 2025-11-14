@@ -12,6 +12,31 @@ def read_protein_data (filename):
          )
      proteins.append(protein_data)
   return proteins
+  
+def encode (sequence):
+    if not sequence:
+        return ''
+    encoded = ''
+    counter = 1
+    char=sequence[0]
+  
+    for i in range(1,len(sequence)):
+        if sequence[i] == char:
+            counter+=1
+        else:
+            if counter>2:
+                encoded += str(counter)+char
+            else:
+                encoded += char * counter
+            counter=1
+            char=sequence[i]
+    if counter > 2:
+        encoded += str(counter) + char
+    else:
+        encoded += char * counter
+
+    return encoded  
+
 
 
 
