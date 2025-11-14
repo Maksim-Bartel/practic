@@ -36,6 +36,25 @@ def encode (sequence):
         encoded += char * counter
 
     return encoded  
+def decode(encoded_sequence):
+
+    decoded = ""
+    i = 0
+
+    while i < len(encoded_sequence):
+        if encoded_sequence[i].isdigit():
+
+            count = int(encoded_sequence[i])
+            char = encoded_sequence[i + 1]
+            decoded += char * count
+            i += 2
+        else:
+
+            decoded += encoded_sequence[i]
+            i += 1
+
+    return decoded  
+
 
 
 
