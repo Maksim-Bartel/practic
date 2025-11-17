@@ -32,10 +32,26 @@ def read_commands_data(filename):
     return commands
 
 def decode (werb):
+    word=""
     for i in range(len(werb)):
         if werb.isdigit():
-            werb =werb.replace(werb[i],werb[i]*int(werb[i])-1)
-    return werb
+            word =word+werb[i+1]*int(werb[i]-1)
+        else:
+            word=word+werb[i]
+    return word
+
+def search_data (protein):
+    search=""
+    protein=decode(protein)
+    proteins=read_command(file_proteins)
+    for i in range(len(proteins)):
+        if (protein[i])[2].find(protein):
+            search=(proteins[i])[1]+" "+ (proteins[i])[2]
+    if search=="":
+        return 'NOT FOUND'
+    else:
+        return search
+
 
 
 
