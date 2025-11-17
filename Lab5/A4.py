@@ -51,6 +51,30 @@ def search_data (protein):
         return 'NOT FOUND'
     else:
         return search
+def mode (protein):
+    
+    proteins=read_command(file_proteins)
+    mode_app=""
+    
+    for i in range(len(proteins)):
+        if (proteins[0]) == protein:
+            mode_app=(proteins[i])[2]
+    if protein == "":
+        return 'MISSING'
+        
+    letters = dict()
+    for i in mode_app:
+        letters[i]=letters.get(i,0)+1
+    letters_app = max(letters,key=letters.get)
+    max_ver = letters[letters_app]
+    
+    for i in sorted(letters):
+        print(i)
+        if letters[i]==max_ver:
+              letters_app=i
+              break
+    return letters_app,max_ver        
+
 
 
 
