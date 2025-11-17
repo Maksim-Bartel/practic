@@ -1,3 +1,9 @@
+import string
+import re
+
+file_commands = 'commands.0.txt'
+file_proteins = 'sequences.0.txt'
+
 def read_command(filename):
     proteins = []
     file = open(filename, 'r', encoding='utf-8')
@@ -12,11 +18,25 @@ def read_command(filename):
         proteins.append(protein_data)
     return proteins
 
+def read_commands_data(filename):
+    commands=[]
+    file = open(filename, 'r',encoding='utf-8')
+
+    for line in file:
+       parts=line.strip().split('\t')
+       commands_data= (
+         parts[0].strip(),
+         parts[1].strip(),
+         )
+       commands.append(commands_data)
+    return commands
+
 def decode (werb):
     for i in range(len(werb)):
         if werb.isdigit():
             werb =werb.replace(werb[i],werb[i]*int(werb[i])-1)
     return werb
+
 
 
 
