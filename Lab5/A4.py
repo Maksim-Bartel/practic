@@ -41,7 +41,7 @@ def decode (werb):
     word=""
     for i in range(len(werb)):
         if werb[i].isdigit():
-            word =word+werb[i+1]*int(werb[i]-1)
+            word =word+werb[i+1]*(int(werb[i])-1)
         else:
             word=word+werb[i]
     return word
@@ -63,7 +63,7 @@ def mode (protein):
     proteins=read_command(file_proteins)
     mode_app=""
     for i in range(len(proteins)):
-        if (proteins[0]) == protein:
+        if (proteins[i])[0] == protein:
             mode_app=(proteins[i])[2]
     if protein == "":
         return 'MISSING'
@@ -89,7 +89,7 @@ def diff(protein1, protein2):
         return 'MISSING'
 
     for i in range(len(proteins)):
-            if (proteins[i])[0]==protein2_2:
+            if (proteins[i])[0]==protein2:
                 protein2_2 = (proteins[i])[2]
     if protein2_2=='':
         return 'MISSING'
@@ -111,25 +111,25 @@ def diff(protein1, protein2):
 
 file = open('genedata.txt','w')
 file.write('Bartel Maksim\n')
-file.write('Genetic Searching')
+file.write('Genetic Searching \n')
 file.write('-'*50)
 commands = read_commands_data(file_commands)
 counter = 1
 for i in range(len(commands)):
     if (commands[i])[0] == 'search':
-        file.write("00"+str(counter))
-        file.write(commands[i][0]+" "+decode(commands[i][1]) + '\n')
+        file.write("00"+str(counter)+" ")
+        file.write((commands[i])[0]+" "+ decode((commands[i])[1]) + '\n')
         file.write('organism'+'protein''\n')
         file.write(search_data(commands[i]))
         file.write(search_data((commands[i])[1])+'\n')
         file.write("-------------------------------------------------------------------------------------\n")
         counter+=1
 
-        if commands[i][0]=="mode":
+        if (commands[i])[0]=="mode":
             file.write("00"+str(counter)+"  ")
-            file.write(commands[i][0]+"  "+commands[i][1]+"  "+commands[i][2]+"\n")
-            file.write('amino-acids difference:\n')
-            file.write(str(diff(commands[i][1],commands[i][2]))+'\n')
+            file.write(commands[i][0]+"  "+decode((commands[i][1])+"\n"))
+            file.write('amino-acids occurs:\n')
+            file.write(str((mode(commands[i][1]))[0])+str((mode((commands[i])[1]))[1]) +'\n')
             file.write("-------------------------------------------------------------------------------------\n")
             counter+=1
         if (commands[i])[0]=="diff":
@@ -139,6 +139,8 @@ for i in range(len(commands)):
            file.write(str(diff(commands[i][1],commands[i][2]))+'\n')
            file.write("----------------------------------------------------------------------------------------\n")
            counter+=1
+
+
 
 
 
