@@ -118,7 +118,7 @@ counter = 1
 for i in range(len(commands)):
     if (commands[i])[0] == 'search':
         file.write("00"+str(counter))
-        file.write(commands[i][0]+" "+decode(commands[i][1])+"\n")
+        file.write(commands[i][0]+" "+decode(commands[i][1]) + '\n')
         file.write('organism'+'protein''\n')
         file.write(search_data(commands[i]))
         file.write(search_data((commands[i])[1])+'\n')
@@ -132,6 +132,14 @@ for i in range(len(commands)):
             file.write(str(diff(commands[i][1],commands[i][2]))+'\n')
             file.write("-------------------------------------------------------------------------------------\n")
             counter+=1
+        if (commands[i])[0]=="diff":
+           file.write("00"+str(counter)+"  ")
+           file.write(commands[i][0]+"  "+commands[i][1]+"  "+commands[i][2]+"\n")
+           file.write('amino-acids difference:\n')
+           file.write(str(diff(commands[i][1],commands[i][2]))+'\n')
+           file.write("----------------------------------------------------------------------------------------\n")
+           counter+=1
+
 
 
 
