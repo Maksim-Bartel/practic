@@ -10,7 +10,9 @@ def crez (text):
     while ')' in text:
         right = text.find(')')
         text = text.replace(')', '', 1)
+    break 
  return text
 
 print(crez(text))
+
 
