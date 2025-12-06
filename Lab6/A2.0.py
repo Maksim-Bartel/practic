@@ -55,3 +55,39 @@ def load_workouts_data():
     stats['total_distance'] = dist
     return stats
 
+ def analyze_user_activity(users, workouts):
+    total_works = []
+
+
+    for user in users:
+        user_id = user['user_id']
+        name = user['name']
+        fitness_level = user['fitness_level']
+
+
+        user_workouts = []
+        for workout in workouts:
+            if workout['user_id'] == user_id:
+                user_workouts.append(workout)
+
+
+        total_workouts = len(user_workouts)
+
+        total_calories = 0
+        total_min = 0
+        for workout in user_workouts:
+            total_calories += workout['calories']
+            total_min += workout['duration']
+
+        total_hours = total_min / 60
+
+
+        total_works.append({
+            'name': name,
+            'level': fitness_level,
+            'workouts': total_workouts,
+            'calories': total_calories,
+            'hours': total_hours
+        })
+
+
