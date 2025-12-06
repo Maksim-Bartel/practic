@@ -160,3 +160,67 @@ def find_user_workouts(users, user_name):
 
 
 
+def analyze_user(user, workouts):
+    user_workouts = [workout for workout in workouts if workout['user_id'] == user['user_id']]
+    if not user_workouts :
+        print(f"у пользователя {user['name']} небыло тренировок")
+        return
+    types = {}
+    for workout in user_workouts:
+        tip = workout['type']
+        types[tip] = types.get(tip, 0) + 1
+
+    favorite_workout = max(types, key=types.get) if types else "нет" #types.get возвращает значение для ключа
+
+    total_workouts = len(user_workouts)
+    total_calories = sum(workout['calories'] for workout in user_workouts)
+    total_minutes = sum(workout['duration'] for workout in user_workouts)
+    total_hours = total_minutes / 60
+    total_dist = sum(workout['distance'] for workout in user_workouts)
+
+    if total_workouts > 0:
+        avg_calories = total_calories / total_workouts
+    else:
+        avg_calories = 0
+    print()
+    print(f"Детальный анализ для пользователя : {user['name']}")
+    print("=" * 40)
+    print(f"Возвраст : {user['age']} лет , {user['weight']} кг")
+    print(f"Уровень : {user['fitness_level']} ")
+    print(f"Тренировок : {total_workouts} ")
+    print(f"Сожжено каллорий : {total_calories} ")
+    print(f"Общее время : {total_hours:.1f} часов")
+    print(f"Пройдено дистанции : {total_dist:.1f} км")
+    print(f"Средние каллории за тренировку : {avg_calories:.1f} ")
+    print(f"Любимый тип тренировки {favorite_workout} ")
+
+
+def main():
+    users = load_users_data()
+    workouts = load_workouts_data()
+
+    stats = get_stats(users, workouts)
+    print("ОБЩАЯ СТАТИСТИКА:")
+    print(f"Всего пользователей: {stats['total_users']}")
+    print(f"Всего тренировок: {stats['total_workouts']}")
+    print(f"Общее время: {stats['total_duration']} часов")
+    print(f"Общее расстояние: {stats['total_distance']:.1f} км")
+    print(f"Всего калорий: {stats['total_calories']}\n")
+
+    analyze_user_activity(users, workouts)
+
+    analyze_workout_types(workouts)
+
+    for user in users:
+        analyze_user(user, workouts)
+
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
