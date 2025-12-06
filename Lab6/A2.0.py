@@ -91,4 +91,17 @@ def load_workouts_data():
         })
 
      total_works.sort(key=lambda x: x['workouts'], reverse=True)
+      
+     print("=" * 50)
+     print("ТОП-3 АКТИВНЫХ ПОЛЬЗОВАТЕЛЕЙ:")
+     print("=" * 50)
+
+     top = total_works[:3]
+     for i, user in enumerate(top, 1):
+         print(f" {i}. {user['name']} ({user['level']}):")
+         print(f"    Тренировок: {user['workouts']}")
+         print(f"    Калорий: {user['calories']}")
+         print(f"    Время: {user['hours']:.1f} часов")
+         print()
+
 
