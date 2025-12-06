@@ -146,6 +146,17 @@ def analyze_workout_types(workouts):
         print(f" Средняя длительность: {avg_duration:.0f} мин")
         print(f" Средние калории: {avg_calories:.0f} ккал")
         print()
+     
+
+def find_user_workouts(users, user_name):
+    user = next((user for user in users if user['name'].lower() == user_name.lower()), None)
+    if user is None:
+        print(f"пользователь {user_name} не найден")
+    return []
+    workouts = load_workouts_data()
+    user_workouts = [workout for workout in workouts if workout['user_id'] == user['user_id']]
+    return user_workouts
+
 
 
 
