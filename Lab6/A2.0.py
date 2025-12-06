@@ -44,7 +44,7 @@ def load_workouts_data():
       return []
 
 
- def get_stats(users, workouts):
+def get_stats(users, workouts):
     stats = {}
     stats['total_workouts'] = len(workouts)
     stats['total_users'] = len(users)
@@ -55,7 +55,9 @@ def load_workouts_data():
     stats['total_distance'] = dist
     return stats
 
- def analyze_user_activity(users, workouts):
+
+
+def analyze_user_activity(users, workouts):
     total_works = []
 
 
@@ -103,5 +105,47 @@ def load_workouts_data():
          print(f"    Калорий: {user['calories']}")
          print(f"    Время: {user['hours']:.1f} часов")
          print()
+      
+
+
+def analyze_workout_types(workouts):
+
+
+
+    print("\nРАСПРЕДЕЛЕНИЕ ПО ТИПАМ ТРЕНИРОВОК:")
+    print("-" * 40)
+
+    type_stats = {}
+
+
+    for workout in workouts:
+        workout_type = workout['type']
+
+        if workout_type not in type_stats:
+            type_stats[workout_type] = {
+                'count': 0,
+                'total_duration': 0,
+                'total_calories': 0
+            }
+
+        type_stats[workout_type]['count'] += 1
+        type_stats[workout_type]['total_duration'] += workout['duration']
+        type_stats[workout_type]['total_calories'] += workout['calories']
+
+    total_workouts = len(workouts)
+
+    for workout_type, stats in type_stats.items():
+        count = stats['count']
+        percentage = (count / total_workouts) * 100
+        avg_duration = stats['total_duration'] / count
+        avg_calories = stats['total_calories'] / count
+
+
+
+        print(f" {workout_type}: {count} тренировок ({percentage:.1f}%)")
+        print(f" Средняя длительность: {avg_duration:.0f} мин")
+        print(f" Средние калории: {avg_calories:.0f} ккал")
+        print()
+
 
 
