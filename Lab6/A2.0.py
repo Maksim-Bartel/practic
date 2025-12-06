@@ -90,4 +90,5 @@ def load_workouts_data():
             'hours': total_hours
         })
 
+     total_works.sort(key=lambda x: x['workouts'], reverse=True)
 
