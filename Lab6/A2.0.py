@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
-
+import matplotlib.pyplot as plt
+import numpy as np
 
 def load_users_data():
  try:
@@ -249,6 +250,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
